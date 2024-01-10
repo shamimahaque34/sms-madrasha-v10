@@ -69,13 +69,13 @@ class SubjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($slug)
+    public function edit($id)
     {
         return view('backend.academic.subject.create',[
             'academicClasses' => AcademicClass::where('status', 1)->get(),
             'studentGroups' => StudentGroup::where('status', 1)->get(),
             'educationalStages' => EducationalStage::where('status', 1)->get(),
-            'subject' => Subject::where('slug',$slug)->first(),
+            'subject' => Subject::where('id',$id)->first(),
         ]);
     }
 
@@ -99,9 +99,9 @@ class SubjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($slug)
+    public function destroy($id)
     {
-        $subject = Subject::where('slug',$slug)->first();
+        $subject = Subject::where('id',$id)->first();
         if ($subject)
         {
             if (file_exists($subject->subject_book_image)){

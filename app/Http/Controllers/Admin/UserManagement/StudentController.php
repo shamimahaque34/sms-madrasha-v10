@@ -17,6 +17,7 @@ use Exception;
 class StudentController extends Controller
 {
     protected $student;
+    protected $teacher;
     /**
      * Display a listing of the resource.
      *

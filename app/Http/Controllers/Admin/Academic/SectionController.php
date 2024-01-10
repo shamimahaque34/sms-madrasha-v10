@@ -63,10 +63,10 @@ class SectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($slug)
+    public function edit($id)
     {
         return view('backend.academic.section.create',[
-            'section'=>Section::where('slug', $slug)->first(),
+            'section'=>Section::where('id', $id)->first(),
         ]);
     }
 
@@ -91,10 +91,10 @@ class SectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($slug)
+    public function destroy($id)
     {
 
-        $section=Section::where('slug', $slug)->first();
+        $section=Section::where('id', $id)->first();
         $section->delete();
         return redirect()->route('sections.index')->with('success','Section Delete successfully');
     }

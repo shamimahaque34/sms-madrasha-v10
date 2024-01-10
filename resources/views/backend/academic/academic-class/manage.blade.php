@@ -44,11 +44,11 @@
                                     <td >
                                         <div class="d-flex">
 {{--                                            <a href="{{route('chapter.show',$chapter->slug)}}" class=" btn btn-primary btn-sm py-0 px-1"><i class="uil-eye"></i></a>--}}
-                                            <a href="{{ route('academic-classes.edit',$academicClass->slug) }}" class="mx-1 btn btn-info btn-sm py-0 px-1"><i class="dripicons-document-edit"></i></a>
-                                            <form action="{{ route('academic-classes.destroy',$academicClass->slug) }}" method="post" style="display: inline-block"  onsubmit="return confirm('Are You sure that to delete this Academic Class'); ">
+                                            <a href="{{ route('academic-classes.edit',$academicClass->id) }}" class="mx-1 btn btn-info btn-sm py-0 px-1"><i class="dripicons-document-edit"></i></a>
+                                            <form action="{{ route('academic-classes.destroy',$academicClass->id) }}" method="post" style="display: inline-block">
                                                 @csrf
                                                 @method('delete')
-                                                <button type="submit" class="btn btn-danger btn-sm py-0 px-1">
+                                                <button type="submit" class="btn btn-danger show-alert-delete-box btn-sm py-0 px-1">
                                                     <i class="dripicons-trash"></i>
                                                 </button>
                                             </form>
@@ -64,5 +64,35 @@
             </div>
         </div>
     </div>
+
+    @section('script')
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+        </script>
+
+
+        
+   <script type="text/javascript">
+      $('.show-alert-delete-box').click(function(event){
+        event.preventDefault();
+        swal({
+            title:  "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            type: "warning",
+            buttons: ["Cancel","Yes!"],
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((willDelete) => {
+            if (willDelete) {
+                $(this).parent().submit();
+            }
+        });
+    });
+    </script>
+
+    @endsection
 @endsection
 

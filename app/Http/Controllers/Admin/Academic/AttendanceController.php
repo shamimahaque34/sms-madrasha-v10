@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Admin\Academic;
 use App\Http\Controllers\Controller;
 use App\Models\Backend\Academic\AcademicClass;
 use App\Models\Backend\Academic\Attendance;
+use App\Models\Backend\Academic\StudentGroup;
+use App\Models\Backend\Academic\EducationalStage;
 use App\Models\Backend\Academic\Section;
+use App\Models\Backend\Academic\Subject;
 use Illuminate\Http\Request;
 
 class AttendanceController extends Controller
@@ -68,13 +71,13 @@ class AttendanceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($slug)
+    public function edit($id)
     {
         return view('backend.academic.attendance.create',[
             'academicClasses' => AcademicClass::where('status', 1)->get(),
             'studentGroups' => StudentGroup::where('status', 1)->get(),
             'educationalStages' => EducationalStage::where('status', 1)->get(),
-            'subject' => Subject::where('slug',$slug)->first(),
+            'subject' => Subject::where('id',$id)->first(),
         ]);
     }
 
@@ -98,9 +101,9 @@ class AttendanceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($slug)
+    public function destroy($id)
     {
-        Attendance::find($slug)->delete();
+        Attendance::find($id)->delete();
         return redirect()->route('attendances.index')->with('success','Subject Create successfully');
     }
 }

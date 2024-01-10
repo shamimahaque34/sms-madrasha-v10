@@ -64,11 +64,11 @@ class AcademicClassController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($slug)
+    public function edit($id)
     {
         return view('backend.academic.academic-class.create', [
             'educationalStages' => EducationalStage::all(),
-            'academicClass' => AcademicClass::where('slug', $slug)->first(),
+            'academicClass' => AcademicClass::where('id', $id)->first(),
         ]);
     }
 
@@ -93,9 +93,9 @@ class AcademicClassController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($slug)
+    public function destroy($id)
     {
-        $academicClass = AcademicClass::where('slug', $slug)->first();
+        $academicClass = AcademicClass::where('id', $id)->first();
         $academicClass->delete();
         return redirect()
             ->route('academic-classes.index')

@@ -61,10 +61,10 @@ class EducationalStageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($slug)
+    public function edit($id)
     {
         return view('backend.academic.educational-stage.create', [
-            'educationalStage' => EducationalStage::where('slug', $slug)->first(),
+            'educationalStage' => EducationalStage::where('id', $id)->first(),
         ]);
     }
 
@@ -89,9 +89,9 @@ class EducationalStageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($slug)
+    public function destroy($id)
     {
-        $educationalStage = EducationalStage::where('slug', $slug)->first();
+        $educationalStage = EducationalStage::where('id', $id)->first();
         $educationalStage->delete();
         return redirect()
             ->route('educational-stages.index')

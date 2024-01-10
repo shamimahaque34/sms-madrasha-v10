@@ -68,13 +68,13 @@ class AssignmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($slug)
+    public function edit($id)
     {
         return view('backend.academic.assignment.create', [
             'academicClasses' => AcademicClass::where('status', 1)->get(),
             'subjects'        => Subject::where('status', 1)->get(),
             'sections'        => Section::where('status', 1)->get(),
-            'assignment'      => Assignment::where('slug', $slug)->first(),
+            'assignment'      => Assignment::where('id', $id)->first(),
         ]);
     }
 
@@ -99,9 +99,9 @@ class AssignmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($slug)
+    public function destroy($id)
     {
-        $assignment = Assignment::where('slug', $slug)->first();
+        $assignment = Assignment::where('id', $id)->first();
         if (file_exists($assignment->file)) {
             unlink($assignment->file);
         }

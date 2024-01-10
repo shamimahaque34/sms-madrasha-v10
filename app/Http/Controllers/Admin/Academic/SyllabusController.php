@@ -66,13 +66,13 @@ class SyllabusController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($slug)
+    public function edit($id)
     {
 
         return view('backend.academic.syllabus.create', [
             'academicYears' => AcademicYear::where('status', 1)->get(),
             'subjects'      => Subject::where('status', 1)->get(),
-            'syllabus'    => Syllabus::where('slug', $slug)->first(),
+            'syllabus'    => Syllabus::where('id', $id)->first(),
         ]);
     }
 
@@ -97,9 +97,9 @@ class SyllabusController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($slug)
+    public function destroy($id)
     {
-        $syllabus = Syllabus::where('slug', $slug)->first();
+        $syllabus = Syllabus::where('id', $id)->first();
         if (file_exists($syllabus->file)) {
             unlink($syllabus->file);
         }

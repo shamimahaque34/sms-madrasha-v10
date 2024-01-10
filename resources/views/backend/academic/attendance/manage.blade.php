@@ -44,8 +44,8 @@
 {{--                                    <td>{{ $attendance->status==0? 'Unpublished':'Publishid'}}</td>--}}
 {{--                                    <td>--}}
 {{--                                        --}}{{--                                        <a href="{{route('section.show',$attendance->id)}}" class="btn btn-{{$attendance->status==0? 'secondary':'primary'}} btn-sm py-0 px-1"><i class="uil-arrow-{{$attendance->status==0? 'down':'up'}}"></i></a>--}}
-{{--                                        <a href="{{ route('sections.edit', $attendance->slug) }}" class="btn btn-info btn-sm py-0 px-1"><i class="dripicons-document-edit"></i></a>--}}
-{{--                                        <form action="{{ route('sections.destroy', $attendance->slug) }}" method="post" style="display: inline-block"  onsubmit="return confirm('Are You sure that to delete this Section'); ">--}}
+{{--                                        <a href="{{ route('sections.edit', $attendance->id) }}" class="btn btn-info btn-sm py-0 px-1"><i class="dripicons-document-edit"></i></a>--}}
+{{--                                        <form action="{{ route('sections.destroy', $attendance->id) }}" method="post" style="display: inline-block"  onsubmit="return confirm('Are You sure that to delete this Section'); ">--}}
 {{--                                            @csrf--}}
 {{--                                            @method('delete')--}}
 {{--                                            <button type="submit" class="btn btn-danger btn-sm py-0 px-1">--}}

@@ -47,10 +47,10 @@
                                                     <a href="{{ route('student-groups.edit', $group->id) }}" class="btn btn-primary btn-sm mt-1 py-0 px-1">
                                                         <i class="dripicons-document-edit f-s-11"></i>
                                                     </a>
-                                                <form action="{{ route('student-groups.destroy', $group->id) }}" method="post" style="display: inline-block" onsubmit="return confirm('Are you sure to delete this student group?');">
+                                                <form action="{{ route('student-groups.destroy', $group->id) }}" method="post" style="display: inline-block">
                                                     @csrf
                                                     @method('delete')
-                                                    <button type="submit" class="btn btn-danger btn-sm mt-1 py-0 px-1">
+                                                    <button type="submit" class="btn btn-danger show-alert-delete-boxbtn-sm mt-1 py-0 px-1">
                                                         <i class="dripicons-trash f-s-11"></i>
                                                     </button>
                                                 </form>
@@ -90,4 +90,32 @@
         });
 
     </script>
+ 
+
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+ </script>
+
+
+ 
+<script type="text/javascript">
+$('.show-alert-delete-box').click(function(event){
+ event.preventDefault();
+ swal({
+     title:  "Are you sure?",
+     text: "You won't be able to revert this!",
+     icon: "warning",
+     type: "warning",
+     buttons: ["Cancel","Yes!"],
+     confirmButtonColor: '#3085d6',
+     cancelButtonColor: '#d33',
+     confirmButtonText: 'Yes, delete it!'
+ }).then((willDelete) => {
+     if (willDelete) {
+         $(this).parent().submit();
+     }
+ });
+});
+</script>
+
 @endsection
